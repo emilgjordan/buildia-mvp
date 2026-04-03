@@ -7,8 +7,8 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
-  
+  constructor(private prisma: PrismaService) { }
+
   async createUser(createUserDto: CreateUserDto): Promise<User> {
 
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
@@ -25,9 +25,9 @@ export class UsersService {
     });
   }
 
-  // findAll() {
-  //   return this.prisma.user.findMany();
-  // }
+  async getUsers(): Promise<User[]> {
+    return this.prisma.user.findMany();
+  }
 
   async getUserById(id: number): Promise<User | null> {
     return this.prisma.user.findUnique({
@@ -42,6 +42,14 @@ export class UsersService {
     return this.prisma.user.findUnique({
       where: {
         email
+      }
+    })
+  }
+
+  async getUserByUsername(username: string): Promise<User | null> {
+    return this.prisma.user.findUnique({
+      where: {
+        username
       }
     })
   }

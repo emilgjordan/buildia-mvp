@@ -1,36 +1,79 @@
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import type { User } from '../../generated/prisma/client';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
-    create(createUserDto: CreateUserDto): import("../../generated/prisma/models").Prisma__UserClient<{
+    getUsers(): Promise<{
         email: string;
         username: string;
         firstName: string;
         lastName: string;
-        bio: string | null;
+        id: number;
         hashedPassword: string;
+        bio: string | null;
         role: string;
         createdAt: Date;
         updatedAt: Date;
-        id: number;
-    }, never, import("@prisma/client/runtime/client").DefaultArgs, {
-        omit: import("../../generated/prisma/internal/prismaNamespace").GlobalOmitConfig | undefined;
-    }>;
-    findAll(): import("../../generated/prisma/internal/prismaNamespace").PrismaPromise<{
-        email: string;
-        username: string;
-        firstName: string;
-        lastName: string;
-        bio: string | null;
-        hashedPassword: string;
-        role: string;
-        createdAt: Date;
-        updatedAt: Date;
-        id: number;
     }[]>;
-    findOne(id: string): string;
-    update(id: string, updateUserDto: UpdateUserDto): string;
-    remove(id: string): string;
+    getCurrentUser(user: User): {
+        email: string;
+        username: string;
+        firstName: string;
+        lastName: string;
+        id: number;
+        hashedPassword: string;
+        bio: string | null;
+        role: string;
+        createdAt: Date;
+        updatedAt: Date;
+    };
+    getUser(id: string): Promise<{
+        email: string;
+        username: string;
+        firstName: string;
+        lastName: string;
+        id: number;
+        hashedPassword: string;
+        bio: string | null;
+        role: string;
+        createdAt: Date;
+        updatedAt: Date;
+    } | null>;
+    getUserByUsername(username: string): Promise<{
+        email: string;
+        username: string;
+        firstName: string;
+        lastName: string;
+        id: number;
+        hashedPassword: string;
+        bio: string | null;
+        role: string;
+        createdAt: Date;
+        updatedAt: Date;
+    } | null>;
+    update(id: string, updateUserDto: UpdateUserDto): Promise<{
+        email: string;
+        username: string;
+        firstName: string;
+        lastName: string;
+        id: number;
+        hashedPassword: string;
+        bio: string | null;
+        role: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    remove(id: string): Promise<{
+        email: string;
+        username: string;
+        firstName: string;
+        lastName: string;
+        id: number;
+        hashedPassword: string;
+        bio: string | null;
+        role: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
 }

@@ -3,6 +3,5 @@ export declare class CreateUserDto {
     username: string;
     firstName: string;
     lastName: string;
-    bio: string;
-    hashedPassword: string;
+    password: string;
 }

@@ -1,36 +1,14 @@
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
+import { Prisma, User } from '../../generated/prisma/client';
 export declare class UsersService {
     private prisma;
     constructor(prisma: PrismaService);
-    create(createUserDto: CreateUserDto): import("../../generated/prisma/models").Prisma__UserClient<{
-        email: string;
-        username: string;
-        firstName: string;
-        lastName: string;
-        bio: string | null;
-        hashedPassword: string;
-        role: string;
-        createdAt: Date;
-        updatedAt: Date;
-        id: number;
-    }, never, import("@prisma/client/runtime/client").DefaultArgs, {
-        omit: import("../../generated/prisma/internal/prismaNamespace").GlobalOmitConfig | undefined;
-    }>;
-    findAll(): import("../../generated/prisma/internal/prismaNamespace").PrismaPromise<{
-        email: string;
-        username: string;
-        firstName: string;
-        lastName: string;
-        bio: string | null;
-        hashedPassword: string;
-        role: string;
-        createdAt: Date;
-        updatedAt: Date;
-        id: number;
-    }[]>;
-    findOne(id: number): string;
-    update(id: number, updateUserDto: UpdateUserDto): string;
-    remove(id: number): string;
+    createUser(createUserDto: CreateUserDto): Promise<User>;
+    getUsers(): Promise<User[]>;
+    getUserById(id: number): Promise<User | null>;
+    getUserByEmail(email: string): Promise<User | null>;
+    getUserByUsername(username: string): Promise<User | null>;
+    updateUser(id: number, updateUserDto: Prisma.UserUpdateInput): Promise<User>;
+    removeUser(id: number): Promise<User>;
 }
