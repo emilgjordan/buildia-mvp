@@ -7,89 +7,89 @@ export declare class ProjectsController {
     constructor(projectsService: ProjectsService);
     createProject(createProjectDto: CreateProjectDto, currentUser: User): Promise<{
         id: number;
-        createdAt: Date;
-        updatedAt: Date;
         title: string;
         description: string;
+        creatorId: number;
         tags: string[];
         likes: number;
         public: boolean;
-        creatorId: number;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     getProjects(request: Request): Promise<{
         id: number;
-        createdAt: Date;
-        updatedAt: Date;
         title: string;
         description: string;
+        creatorId: number;
         tags: string[];
         likes: number;
         public: boolean;
-        creatorId: number;
+        createdAt: Date;
+        updatedAt: Date;
     }[]>;
     getProject(id: string): Promise<{
         id: number;
-        createdAt: Date;
-        updatedAt: Date;
         title: string;
         description: string;
+        creatorId: number;
         tags: string[];
         likes: number;
         public: boolean;
-        creatorId: number;
+        createdAt: Date;
+        updatedAt: Date;
     } | null>;
     joinProject(projectId: string, currentUser: User): Promise<{
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        projectId: number;
         userId: number;
+        projectId: number;
         status: import("../../generated/prisma/enums").Status;
     }>;
     getJoinRequests(projectId: number, currentUser: User): Promise<{
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        projectId: number;
         userId: number;
+        projectId: number;
         status: import("../../generated/prisma/enums").Status;
     }[]>;
     acceptJoinRequest(requestId: number, currentUser: User): Promise<{
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        projectId: number;
         userId: number;
+        projectId: number;
         status: import("../../generated/prisma/enums").Status;
     }>;
     rejectJoinRequest(requestId: number, currentUser: User): Promise<{
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        projectId: number;
         userId: number;
+        projectId: number;
         status: import("../../generated/prisma/enums").Status;
     }>;
     updateProject(id: string, updateProjectDto: UpdateProjectDto, currentUser: User): Promise<{
         id: number;
-        createdAt: Date;
-        updatedAt: Date;
         title: string;
         description: string;
+        creatorId: number;
         tags: string[];
         likes: number;
         public: boolean;
-        creatorId: number;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     removeProject(id: string, currentUser: User): Promise<{
         id: number;
-        createdAt: Date;
-        updatedAt: Date;
         title: string;
         description: string;
+        creatorId: number;
         tags: string[];
         likes: number;
         public: boolean;
-        creatorId: number;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
 }

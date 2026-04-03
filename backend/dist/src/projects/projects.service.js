@@ -232,10 +232,11 @@ let ProjectsService = class ProjectsService {
         if (project.creatorId !== currentUserId) {
             throw new common_1.UnauthorizedException('You are not the creator of this project');
         }
-        return this.prisma.project.delete({
-            where: {
-                id,
-            },
+        return this.prisma.$transaction(async (tx) => {
+            await tx.joinRequest.deleteMany({ where: { projectId: id } });
+            await tx.userProjects.deleteMany({ where: { projectId: id } });
+            const deleted = await tx.project.delete({ where: { id } });
+            return deleted;
         });
     }
 };
