@@ -34,7 +34,7 @@ export const actions: Actions = {
 
             responseData = await response.json();
 
-            //	console.log(responseData);
+            console.log(responseData);
 
             if (!response.ok) {
                 console.log(response);

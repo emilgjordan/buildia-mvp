@@ -7,10 +7,10 @@ export const authenticateUser = async (event: RequestEvent) => {
     const accessToken = cookies.get('accessToken');
     const refreshToken = cookies.get('refreshToken');
 
-    //console.log('All cookies: ');
-    //console.log(cookies.getAll());
+    // console.log('All cookies: ');
+    // console.log(cookies.getAll());
     if (!accessToken) {
-        // console.log('No access token found');
+        //console.log('No access token found');
         return null;
     }
 
