@@ -136,7 +136,7 @@ export type ProjectGroupByOutputType = {
     _min: ProjectMinAggregateOutputType | null;
     _max: ProjectMaxAggregateOutputType | null;
 };
-type GetProjectGroupByPayload<T extends ProjectGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<ProjectGroupByOutputType, T['by']> & {
+export type GetProjectGroupByPayload<T extends ProjectGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<ProjectGroupByOutputType, T['by']> & {
     [P in ((keyof T) & (keyof ProjectGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], ProjectGroupByOutputType[P]> : Prisma.GetScalarType<T[P], ProjectGroupByOutputType[P]>;
 }>>;
 export type ProjectWhereInput = {
@@ -943,4 +943,3 @@ export type ProjectDefaultArgs<ExtArgs extends runtime.Types.Extensions.Internal
     omit?: Prisma.ProjectOmit<ExtArgs> | null;
     include?: Prisma.ProjectInclude<ExtArgs> | null;
 };
-export {};

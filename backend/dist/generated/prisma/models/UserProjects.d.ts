@@ -94,7 +94,7 @@ export type UserProjectsGroupByOutputType = {
     _min: UserProjectsMinAggregateOutputType | null;
     _max: UserProjectsMaxAggregateOutputType | null;
 };
-type GetUserProjectsGroupByPayload<T extends UserProjectsGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<UserProjectsGroupByOutputType, T['by']> & {
+export type GetUserProjectsGroupByPayload<T extends UserProjectsGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<UserProjectsGroupByOutputType, T['by']> & {
     [P in ((keyof T) & (keyof UserProjectsGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], UserProjectsGroupByOutputType[P]> : Prisma.GetScalarType<T[P], UserProjectsGroupByOutputType[P]>;
 }>>;
 export type UserProjectsWhereInput = {
@@ -602,4 +602,3 @@ export type UserProjectsDefaultArgs<ExtArgs extends runtime.Types.Extensions.Int
     omit?: Prisma.UserProjectsOmit<ExtArgs> | null;
     include?: Prisma.UserProjectsInclude<ExtArgs> | null;
 };
-export {};

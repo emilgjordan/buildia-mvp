@@ -115,7 +115,7 @@ export type RefreshTokenGroupByOutputType = {
     _min: RefreshTokenMinAggregateOutputType | null;
     _max: RefreshTokenMaxAggregateOutputType | null;
 };
-type GetRefreshTokenGroupByPayload<T extends RefreshTokenGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<RefreshTokenGroupByOutputType, T['by']> & {
+export type GetRefreshTokenGroupByPayload<T extends RefreshTokenGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<RefreshTokenGroupByOutputType, T['by']> & {
     [P in ((keyof T) & (keyof RefreshTokenGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], RefreshTokenGroupByOutputType[P]> : Prisma.GetScalarType<T[P], RefreshTokenGroupByOutputType[P]>;
 }>>;
 export type RefreshTokenWhereInput = {
@@ -604,4 +604,3 @@ export type RefreshTokenDefaultArgs<ExtArgs extends runtime.Types.Extensions.Int
     omit?: Prisma.RefreshTokenOmit<ExtArgs> | null;
     include?: Prisma.RefreshTokenInclude<ExtArgs> | null;
 };
-export {};

@@ -120,7 +120,7 @@ export type JoinRequestGroupByOutputType = {
     _min: JoinRequestMinAggregateOutputType | null;
     _max: JoinRequestMaxAggregateOutputType | null;
 };
-type GetJoinRequestGroupByPayload<T extends JoinRequestGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<JoinRequestGroupByOutputType, T['by']> & {
+export type GetJoinRequestGroupByPayload<T extends JoinRequestGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<JoinRequestGroupByOutputType, T['by']> & {
     [P in ((keyof T) & (keyof JoinRequestGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], JoinRequestGroupByOutputType[P]> : Prisma.GetScalarType<T[P], JoinRequestGroupByOutputType[P]>;
 }>>;
 export type JoinRequestWhereInput = {
@@ -723,4 +723,3 @@ export type JoinRequestDefaultArgs<ExtArgs extends runtime.Types.Extensions.Inte
     omit?: Prisma.JoinRequestOmit<ExtArgs> | null;
     include?: Prisma.JoinRequestInclude<ExtArgs> | null;
 };
-export {};
