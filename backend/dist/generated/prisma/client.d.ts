@@ -8,6 +8,6 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma };
 export type User = Prisma.UserModel;
 export type Project = Prisma.ProjectModel;
-export type UserProjects = Prisma.UserProjectsModel;
+export type UserProject = Prisma.UserProjectModel;
 export type JoinRequest = Prisma.JoinRequestModel;
 export type RefreshToken = Prisma.RefreshTokenModel;

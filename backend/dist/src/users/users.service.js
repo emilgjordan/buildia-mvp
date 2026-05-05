@@ -56,7 +56,7 @@ let UsersService = class UsersService {
         const { password, ...rest } = createUserDto;
         const newUser = {
             ...rest,
-            hashedPassword: hashedPassword
+            hashedPassword: hashedPassword,
         };
         return this.prisma.user.create({
             data: newUser,
@@ -75,15 +75,15 @@ let UsersService = class UsersService {
     async getUserByEmail(email) {
         return this.prisma.user.findUnique({
             where: {
-                email
-            }
+                email,
+            },
         });
     }
     async getUserByUsername(username) {
         return this.prisma.user.findUnique({
             where: {
-                username
-            }
+                username,
+            },
         });
     }
     async updateUser(id, updateUserDto) {
@@ -95,10 +95,20 @@ let UsersService = class UsersService {
         });
     }
     async removeUser(id) {
-        return this.prisma.user.delete({
+        const user = await this.prisma.user.findUnique({
             where: {
                 id,
             },
+        });
+        if (!user) {
+            throw new common_1.NotFoundException('User not found');
+        }
+        return this.prisma.$transaction(async (tx) => {
+            await tx.refreshToken.deleteMany({ where: { userId: id } });
+            await tx.joinRequest.deleteMany({ where: { userId: id } });
+            await tx.userProject.deleteMany({ where: { userId: id } });
+            const deleted = await tx.user.delete({ where: { id } });
+            return deleted;
         });
     }
 };

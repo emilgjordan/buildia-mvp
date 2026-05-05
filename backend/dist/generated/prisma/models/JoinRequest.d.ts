@@ -23,7 +23,7 @@ export type JoinRequestMinAggregateOutputType = {
     id: number | null;
     projectId: number | null;
     userId: number | null;
-    status: $Enums.Status | null;
+    status: $Enums.JoinRequestStatus | null;
     createdAt: Date | null;
     updatedAt: Date | null;
 };
@@ -31,7 +31,7 @@ export type JoinRequestMaxAggregateOutputType = {
     id: number | null;
     projectId: number | null;
     userId: number | null;
-    status: $Enums.Status | null;
+    status: $Enums.JoinRequestStatus | null;
     createdAt: Date | null;
     updatedAt: Date | null;
 };
@@ -111,7 +111,7 @@ export type JoinRequestGroupByOutputType = {
     id: number;
     projectId: number;
     userId: number;
-    status: $Enums.Status;
+    status: $Enums.JoinRequestStatus;
     createdAt: Date;
     updatedAt: Date;
     _count: JoinRequestCountAggregateOutputType | null;
@@ -130,7 +130,7 @@ export type JoinRequestWhereInput = {
     id?: Prisma.IntFilter<"JoinRequest"> | number;
     projectId?: Prisma.IntFilter<"JoinRequest"> | number;
     userId?: Prisma.IntFilter<"JoinRequest"> | number;
-    status?: Prisma.EnumStatusFilter<"JoinRequest"> | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFilter<"JoinRequest"> | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFilter<"JoinRequest"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"JoinRequest"> | Date | string;
     project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>;
@@ -148,17 +148,18 @@ export type JoinRequestOrderByWithRelationInput = {
 };
 export type JoinRequestWhereUniqueInput = Prisma.AtLeast<{
     id?: number;
+    userId_projectId?: Prisma.JoinRequestUserIdProjectIdCompoundUniqueInput;
     AND?: Prisma.JoinRequestWhereInput | Prisma.JoinRequestWhereInput[];
     OR?: Prisma.JoinRequestWhereInput[];
     NOT?: Prisma.JoinRequestWhereInput | Prisma.JoinRequestWhereInput[];
     projectId?: Prisma.IntFilter<"JoinRequest"> | number;
     userId?: Prisma.IntFilter<"JoinRequest"> | number;
-    status?: Prisma.EnumStatusFilter<"JoinRequest"> | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFilter<"JoinRequest"> | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFilter<"JoinRequest"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"JoinRequest"> | Date | string;
     project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>;
     user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
-}, "id">;
+}, "id" | "userId_projectId">;
 export type JoinRequestOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
     projectId?: Prisma.SortOrder;
@@ -179,12 +180,12 @@ export type JoinRequestScalarWhereWithAggregatesInput = {
     id?: Prisma.IntWithAggregatesFilter<"JoinRequest"> | number;
     projectId?: Prisma.IntWithAggregatesFilter<"JoinRequest"> | number;
     userId?: Prisma.IntWithAggregatesFilter<"JoinRequest"> | number;
-    status?: Prisma.EnumStatusWithAggregatesFilter<"JoinRequest"> | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusWithAggregatesFilter<"JoinRequest"> | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<"JoinRequest"> | Date | string;
     updatedAt?: Prisma.DateTimeWithAggregatesFilter<"JoinRequest"> | Date | string;
 };
 export type JoinRequestCreateInput = {
-    status?: $Enums.Status;
+    status?: $Enums.JoinRequestStatus;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     project: Prisma.ProjectCreateNestedOneWithoutJoinRequestsInput;
@@ -194,12 +195,12 @@ export type JoinRequestUncheckedCreateInput = {
     id?: number;
     projectId: number;
     userId: number;
-    status?: $Enums.Status;
+    status?: $Enums.JoinRequestStatus;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 };
 export type JoinRequestUpdateInput = {
-    status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFieldUpdateOperationsInput | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     project?: Prisma.ProjectUpdateOneRequiredWithoutJoinRequestsNestedInput;
@@ -209,7 +210,7 @@ export type JoinRequestUncheckedUpdateInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     projectId?: Prisma.IntFieldUpdateOperationsInput | number;
     userId?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFieldUpdateOperationsInput | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -217,12 +218,12 @@ export type JoinRequestCreateManyInput = {
     id?: number;
     projectId: number;
     userId: number;
-    status?: $Enums.Status;
+    status?: $Enums.JoinRequestStatus;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 };
 export type JoinRequestUpdateManyMutationInput = {
-    status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFieldUpdateOperationsInput | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -230,7 +231,7 @@ export type JoinRequestUncheckedUpdateManyInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     projectId?: Prisma.IntFieldUpdateOperationsInput | number;
     userId?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFieldUpdateOperationsInput | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -241,6 +242,10 @@ export type JoinRequestListRelationFilter = {
 };
 export type JoinRequestOrderByRelationAggregateInput = {
     _count?: Prisma.SortOrder;
+};
+export type JoinRequestUserIdProjectIdCompoundUniqueInput = {
+    userId: number;
+    projectId: number;
 };
 export type JoinRequestCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
@@ -352,11 +357,11 @@ export type JoinRequestUncheckedUpdateManyWithoutProjectNestedInput = {
     updateMany?: Prisma.JoinRequestUpdateManyWithWhereWithoutProjectInput | Prisma.JoinRequestUpdateManyWithWhereWithoutProjectInput[];
     deleteMany?: Prisma.JoinRequestScalarWhereInput | Prisma.JoinRequestScalarWhereInput[];
 };
-export type EnumStatusFieldUpdateOperationsInput = {
-    set?: $Enums.Status;
+export type EnumJoinRequestStatusFieldUpdateOperationsInput = {
+    set?: $Enums.JoinRequestStatus;
 };
 export type JoinRequestCreateWithoutUserInput = {
-    status?: $Enums.Status;
+    status?: $Enums.JoinRequestStatus;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     project: Prisma.ProjectCreateNestedOneWithoutJoinRequestsInput;
@@ -364,7 +369,7 @@ export type JoinRequestCreateWithoutUserInput = {
 export type JoinRequestUncheckedCreateWithoutUserInput = {
     id?: number;
     projectId: number;
-    status?: $Enums.Status;
+    status?: $Enums.JoinRequestStatus;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 };
@@ -396,12 +401,12 @@ export type JoinRequestScalarWhereInput = {
     id?: Prisma.IntFilter<"JoinRequest"> | number;
     projectId?: Prisma.IntFilter<"JoinRequest"> | number;
     userId?: Prisma.IntFilter<"JoinRequest"> | number;
-    status?: Prisma.EnumStatusFilter<"JoinRequest"> | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFilter<"JoinRequest"> | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFilter<"JoinRequest"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"JoinRequest"> | Date | string;
 };
 export type JoinRequestCreateWithoutProjectInput = {
-    status?: $Enums.Status;
+    status?: $Enums.JoinRequestStatus;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     user: Prisma.UserCreateNestedOneWithoutJoinRequestsInput;
@@ -409,7 +414,7 @@ export type JoinRequestCreateWithoutProjectInput = {
 export type JoinRequestUncheckedCreateWithoutProjectInput = {
     id?: number;
     userId: number;
-    status?: $Enums.Status;
+    status?: $Enums.JoinRequestStatus;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 };
@@ -437,12 +442,12 @@ export type JoinRequestUpdateManyWithWhereWithoutProjectInput = {
 export type JoinRequestCreateManyUserInput = {
     id?: number;
     projectId: number;
-    status?: $Enums.Status;
+    status?: $Enums.JoinRequestStatus;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 };
 export type JoinRequestUpdateWithoutUserInput = {
-    status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFieldUpdateOperationsInput | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     project?: Prisma.ProjectUpdateOneRequiredWithoutJoinRequestsNestedInput;
@@ -450,26 +455,26 @@ export type JoinRequestUpdateWithoutUserInput = {
 export type JoinRequestUncheckedUpdateWithoutUserInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     projectId?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFieldUpdateOperationsInput | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type JoinRequestUncheckedUpdateManyWithoutUserInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     projectId?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFieldUpdateOperationsInput | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type JoinRequestCreateManyProjectInput = {
     id?: number;
     userId: number;
-    status?: $Enums.Status;
+    status?: $Enums.JoinRequestStatus;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 };
 export type JoinRequestUpdateWithoutProjectInput = {
-    status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFieldUpdateOperationsInput | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     user?: Prisma.UserUpdateOneRequiredWithoutJoinRequestsNestedInput;
@@ -477,14 +482,14 @@ export type JoinRequestUpdateWithoutProjectInput = {
 export type JoinRequestUncheckedUpdateWithoutProjectInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     userId?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFieldUpdateOperationsInput | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type JoinRequestUncheckedUpdateManyWithoutProjectInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     userId?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+    status?: Prisma.EnumJoinRequestStatusFieldUpdateOperationsInput | $Enums.JoinRequestStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -549,7 +554,7 @@ export type $JoinRequestPayload<ExtArgs extends runtime.Types.Extensions.Interna
         id: number;
         projectId: number;
         userId: number;
-        status: $Enums.Status;
+        status: $Enums.JoinRequestStatus;
         createdAt: Date;
         updatedAt: Date;
     }, ExtArgs["result"]["joinRequest"]>;
@@ -614,7 +619,7 @@ export interface JoinRequestFieldRefs {
     readonly id: Prisma.FieldRef<"JoinRequest", 'Int'>;
     readonly projectId: Prisma.FieldRef<"JoinRequest", 'Int'>;
     readonly userId: Prisma.FieldRef<"JoinRequest", 'Int'>;
-    readonly status: Prisma.FieldRef<"JoinRequest", 'Status'>;
+    readonly status: Prisma.FieldRef<"JoinRequest", 'JoinRequestStatus'>;
     readonly createdAt: Prisma.FieldRef<"JoinRequest", 'DateTime'>;
     readonly updatedAt: Prisma.FieldRef<"JoinRequest", 'DateTime'>;
 }

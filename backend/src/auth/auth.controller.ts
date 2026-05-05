@@ -1,40 +1,62 @@
 import { Controller } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
-import { UseGuards, Post, Req, InternalServerErrorException, Body, UnauthorizedException } from '@nestjs/common';
+import {
+    UseGuards,
+    Post,
+    Req,
+    InternalServerErrorException,
+    Body,
+    UnauthorizedException,
+} from '@nestjs/common';
 import type { Request } from 'express';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private readonly authService: AuthService,
-        private readonly usersService: UsersService) { }
+    constructor(
+        private readonly authService: AuthService,
+        private readonly usersService: UsersService,
+    ) {}
 
     @Post('register')
     async register(@Body() createUserDto: CreateUserDto) {
-        return this.usersService.createUser(createUserDto);
+        let user = await this.usersService.createUser(createUserDto);
+
+        const { accessToken, refreshToken } =
+            await this.authService.generateTokens(user);
+
+        return {
+            accessToken,
+            refreshToken,
+        };
     }
 
     @UseGuards(LocalAuthGuard)
     @Post('login')
     async login(@Req() req: Request) {
-
         if (!req.user) {
             throw new InternalServerErrorException('User not found');
         }
 
-        const { accessToken, refreshToken } = await this.authService.generateTokens(
-            req.user,
-        )
+        const { accessToken, refreshToken } =
+            await this.authService.generateTokens(req.user);
 
         return {
-            accessToken, refreshToken
+            accessToken,
+            refreshToken,
         };
     }
 
     @Post('logout')
-    logout(@Body() body: any) { }
+    async logout(@Req() req: Request): Promise<{ success: true }> {
+        const refreshToken = req.headers['refresh-token'] as string | undefined;
+
+        await this.authService.logout(refreshToken);
+
+        return { success: true };
+    }
 
     @Post('refresh')
     async refresh(

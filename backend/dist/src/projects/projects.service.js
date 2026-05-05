@@ -21,14 +21,14 @@ let ProjectsService = class ProjectsService {
         return this.prisma.project.create({
             data: {
                 ...createProjectDto,
-                creator: { connect: { id: currentUserId } },
                 members: {
-                    create: [
-                        {
-                            user: { connect: { id: currentUserId } }
+                    create: {
+                        user: {
+                            connect: { id: currentUserId },
                         },
-                    ]
-                }
+                        role: 'OWNER',
+                    },
+                },
             },
         });
     }
@@ -55,7 +55,7 @@ let ProjectsService = class ProjectsService {
             data: {
                 project: { connect: { id: projectId } },
                 user: { connect: { id: currentUserId } },
-            }
+            },
         });
     }
     async getJoinRequests(projectId, currentUserId) {
@@ -183,8 +183,8 @@ let ProjectsService = class ProjectsService {
                     include: {
                         user: true,
                     },
-                }
-            }
+                },
+            },
         });
     }
     async getProjectById(id) {
@@ -197,21 +197,29 @@ let ProjectsService = class ProjectsService {
                     include: {
                         user: true,
                     },
-                }
-            }
+                },
+            },
         });
     }
     async updateProject(id, projectUpdateDto, currentUserId) {
         const project = await this.prisma.project.findUnique({
             where: {
                 id,
-            }
+            },
         });
         if (!project) {
             throw new common_1.NotFoundException('Project not found');
         }
-        if (project.creatorId !== currentUserId) {
-            throw new common_1.UnauthorizedException('You are not the creator of this project');
+        const userProject = await this.prisma.userProject.findUnique({
+            where: {
+                userId_projectId: {
+                    userId: currentUserId,
+                    projectId: id,
+                },
+            },
+        });
+        if (!userProject) {
+            throw new common_1.UnauthorizedException('You are not a member of this project');
         }
         return this.prisma.project.update({
             where: {
@@ -224,17 +232,25 @@ let ProjectsService = class ProjectsService {
         const project = await this.prisma.project.findUnique({
             where: {
                 id,
-            }
+            },
         });
         if (!project) {
             throw new common_1.NotFoundException('Project not found');
         }
-        if (project.creatorId !== currentUserId) {
+        const userProject = await this.prisma.userProject.findUnique({
+            where: {
+                userId_projectId: {
+                    userId: currentUserId,
+                    projectId: id,
+                },
+            },
+        });
+        if (!userProject || userProject.role !== 'OWNER') {
             throw new common_1.UnauthorizedException('You are not the creator of this project');
         }
         return this.prisma.$transaction(async (tx) => {
             await tx.joinRequest.deleteMany({ where: { projectId: id } });
-            await tx.userProjects.deleteMany({ where: { projectId: id } });
+            await tx.userProject.deleteMany({ where: { projectId: id } });
             const deleted = await tx.project.delete({ where: { id } });
             return deleted;
         });

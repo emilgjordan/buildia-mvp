@@ -3,11 +3,11 @@ import { IsArray, IsBoolean, IsInt, IsNotEmpty, IsOptional, IsString } from "cla
 export class CreateProjectDto {
     @IsString()
     @IsNotEmpty()
-    title: string;
+    title!: string;
 
     @IsString()
     @IsNotEmpty()
-    description: string;
+    description!: string;
 
     @IsOptional()
     @IsArray()

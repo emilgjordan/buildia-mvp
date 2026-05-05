@@ -159,7 +159,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export declare const ModelName: {
     readonly User: "User";
     readonly Project: "Project";
-    readonly UserProjects: "UserProjects";
+    readonly UserProject: "UserProject";
     readonly JoinRequest: "JoinRequest";
     readonly RefreshToken: "RefreshToken";
 };
@@ -174,7 +174,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "user" | "project" | "userProjects" | "joinRequest" | "refreshToken";
+        modelProps: "user" | "project" | "userProject" | "joinRequest" | "refreshToken";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -326,77 +326,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
-        UserProjects: {
-            payload: Prisma.$UserProjectsPayload<ExtArgs>;
-            fields: Prisma.UserProjectsFieldRefs;
+        UserProject: {
+            payload: Prisma.$UserProjectPayload<ExtArgs>;
+            fields: Prisma.UserProjectFieldRefs;
             operations: {
                 findUnique: {
-                    args: Prisma.UserProjectsFindUniqueArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload> | null;
+                    args: Prisma.UserProjectFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload> | null;
                 };
                 findUniqueOrThrow: {
-                    args: Prisma.UserProjectsFindUniqueOrThrowArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload>;
+                    args: Prisma.UserProjectFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload>;
                 };
                 findFirst: {
-                    args: Prisma.UserProjectsFindFirstArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload> | null;
+                    args: Prisma.UserProjectFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload> | null;
                 };
                 findFirstOrThrow: {
-                    args: Prisma.UserProjectsFindFirstOrThrowArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload>;
+                    args: Prisma.UserProjectFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload>;
                 };
                 findMany: {
-                    args: Prisma.UserProjectsFindManyArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload>[];
+                    args: Prisma.UserProjectFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload>[];
                 };
                 create: {
-                    args: Prisma.UserProjectsCreateArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload>;
+                    args: Prisma.UserProjectCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload>;
                 };
                 createMany: {
-                    args: Prisma.UserProjectsCreateManyArgs<ExtArgs>;
+                    args: Prisma.UserProjectCreateManyArgs<ExtArgs>;
                     result: BatchPayload;
                 };
                 createManyAndReturn: {
-                    args: Prisma.UserProjectsCreateManyAndReturnArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload>[];
+                    args: Prisma.UserProjectCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload>[];
                 };
                 delete: {
-                    args: Prisma.UserProjectsDeleteArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload>;
+                    args: Prisma.UserProjectDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload>;
                 };
                 update: {
-                    args: Prisma.UserProjectsUpdateArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload>;
+                    args: Prisma.UserProjectUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload>;
                 };
                 deleteMany: {
-                    args: Prisma.UserProjectsDeleteManyArgs<ExtArgs>;
+                    args: Prisma.UserProjectDeleteManyArgs<ExtArgs>;
                     result: BatchPayload;
                 };
                 updateMany: {
-                    args: Prisma.UserProjectsUpdateManyArgs<ExtArgs>;
+                    args: Prisma.UserProjectUpdateManyArgs<ExtArgs>;
                     result: BatchPayload;
                 };
                 updateManyAndReturn: {
-                    args: Prisma.UserProjectsUpdateManyAndReturnArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload>[];
+                    args: Prisma.UserProjectUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload>[];
                 };
                 upsert: {
-                    args: Prisma.UserProjectsUpsertArgs<ExtArgs>;
-                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectsPayload>;
+                    args: Prisma.UserProjectUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$UserProjectPayload>;
                 };
                 aggregate: {
-                    args: Prisma.UserProjectsAggregateArgs<ExtArgs>;
-                    result: runtime.Types.Utils.Optional<Prisma.AggregateUserProjects>;
+                    args: Prisma.UserProjectAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateUserProject>;
                 };
                 groupBy: {
-                    args: Prisma.UserProjectsGroupByArgs<ExtArgs>;
-                    result: runtime.Types.Utils.Optional<Prisma.UserProjectsGroupByOutputType>[];
+                    args: Prisma.UserProjectGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.UserProjectGroupByOutputType>[];
                 };
                 count: {
-                    args: Prisma.UserProjectsCountArgs<ExtArgs>;
-                    result: runtime.Types.Utils.Optional<Prisma.UserProjectsCountAggregateOutputType> | number;
+                    args: Prisma.UserProjectCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.UserProjectCountAggregateOutputType> | number;
                 };
             };
         };
@@ -596,7 +596,6 @@ export declare const ProjectScalarFieldEnum: {
     readonly id: "id";
     readonly title: "title";
     readonly description: "description";
-    readonly creatorId: "creatorId";
     readonly tags: "tags";
     readonly likes: "likes";
     readonly public: "public";
@@ -604,12 +603,13 @@ export declare const ProjectScalarFieldEnum: {
     readonly updatedAt: "updatedAt";
 };
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum];
-export declare const UserProjectsScalarFieldEnum: {
+export declare const UserProjectScalarFieldEnum: {
     readonly userId: "userId";
     readonly projectId: "projectId";
+    readonly role: "role";
     readonly joinedAt: "joinedAt";
 };
-export type UserProjectsScalarFieldEnum = (typeof UserProjectsScalarFieldEnum)[keyof typeof UserProjectsScalarFieldEnum];
+export type UserProjectScalarFieldEnum = (typeof UserProjectScalarFieldEnum)[keyof typeof UserProjectScalarFieldEnum];
 export declare const JoinRequestScalarFieldEnum: {
     readonly id: "id";
     readonly projectId: "projectId";
@@ -647,11 +647,15 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>;
 export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>;
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>;
+export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>;
+export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>;
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>;
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>;
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>;
-export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>;
-export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>;
+export type EnumProjectRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectRole'>;
+export type ListEnumProjectRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectRole[]'>;
+export type EnumJoinRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JoinRequestStatus'>;
+export type ListEnumJoinRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JoinRequestStatus[]'>;
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>;
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>;
 export type BatchPayload = {
@@ -681,7 +685,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
     user?: Prisma.UserOmit;
     project?: Prisma.ProjectOmit;
-    userProjects?: Prisma.UserProjectsOmit;
+    userProject?: Prisma.UserProjectOmit;
     joinRequest?: Prisma.JoinRequestOmit;
     refreshToken?: Prisma.RefreshTokenOmit;
 };

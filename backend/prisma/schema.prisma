@@ -13,6 +13,24 @@ datasource db {
   provider = "postgresql"
 }
 
+enum ProjectRole {
+  MEMBER
+  OWNER
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum JoinRequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+
 model User {
   id              Int            @id @default(autoincrement())
   email           String         @unique
@@ -21,63 +39,71 @@ model User {
   lastName        String
   hashedPassword  String
   bio             String?
-  role            String         @default("USER")
-  projects        UserProjects[]
-  createdProjects Project[]
+  role            UserRole       @default(USER)
+  
+  projects        UserProject[]
   joinRequests    JoinRequest[]
+  refreshTokens   RefreshToken[]
+
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
-  refreshTokens   RefreshToken[]
 }
 
 model Project {
   id           Int            @id @default(autoincrement())
   title        String
   description  String
-  members      UserProjects[]
-  creator      User           @relation(fields: [creatorId], references: [id])
-  creatorId    Int
   tags         String[]       @default([])
   likes        Int            @default(0)
-  joinRequests JoinRequest[]
   public       Boolean        @default(true)
+
+  members      UserProject[]
+  joinRequests JoinRequest[]
+  
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
 }
 
-model UserProjects {
+
+model UserProject {
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
+
   project   Project  @relation(fields: [projectId], references: [id])
   projectId Int
+
+  role      ProjectRole @default(MEMBER)
   joinedAt  DateTime @default(now())
 
   @@id([userId, projectId])
-}
-
-enum Status {
-  PENDING
-  ACCEPTED
-  REJECTED
-  CANCELLED
+  @@index([projectId])
 }
 
 model JoinRequest {
   id        Int      @id @default(autoincrement())
+
   project   Project  @relation(fields: [projectId], references: [id])
   projectId Int
+
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
-  status    Status   @default(PENDING)
+
+  status    JoinRequestStatus   @default(PENDING)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([userId, projectId])
+  @@index([projectId])
 }
 
 model RefreshToken {
   id        Int      @id @default(autoincrement())
   token     String   @unique
+
   userId    Int
   user      User     @relation(fields: [userId], references: [id])
+  
   revoked   Boolean  @default(false)
   createdAt DateTime @default(now())
   expiresAt DateTime

@@ -1,12 +1,12 @@
-import type { Actions, PageServerLoad } from "./$types.js";
-import { setError, superValidate } from "sveltekit-superforms/server";
-import { loginFormSchema } from "./login-form-schema.js";
-import { zod4 } from "sveltekit-superforms/adapters";
-import { error, fail, redirect } from "@sveltejs/kit";
+import type { Actions, PageServerLoad } from './$types.js';
+import { setError, superValidate } from 'sveltekit-superforms/server';
+import { loginFormSchema } from './login-form-schema.js';
+import { zod4 } from 'sveltekit-superforms/adapters';
+import { error, fail, redirect } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async () => {
     return {
-        form: await superValidate(zod4(loginFormSchema)),
+        form: await superValidate(zod4(loginFormSchema))
     };
 };
 

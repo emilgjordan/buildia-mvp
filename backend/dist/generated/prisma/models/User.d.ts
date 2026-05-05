@@ -1,4 +1,5 @@
 import type * as runtime from "@prisma/client/runtime/client";
+import type * as $Enums from "../enums.js";
 import type * as Prisma from "../internal/prismaNamespace.js";
 export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayload>;
 export type AggregateUser = {
@@ -22,7 +23,7 @@ export type UserMinAggregateOutputType = {
     lastName: string | null;
     hashedPassword: string | null;
     bio: string | null;
-    role: string | null;
+    role: $Enums.UserRole | null;
     createdAt: Date | null;
     updatedAt: Date | null;
 };
@@ -34,7 +35,7 @@ export type UserMaxAggregateOutputType = {
     lastName: string | null;
     hashedPassword: string | null;
     bio: string | null;
-    role: string | null;
+    role: $Enums.UserRole | null;
     createdAt: Date | null;
     updatedAt: Date | null;
 };
@@ -130,7 +131,7 @@ export type UserGroupByOutputType = {
     lastName: string;
     hashedPassword: string;
     bio: string | null;
-    role: string;
+    role: $Enums.UserRole;
     createdAt: Date;
     updatedAt: Date;
     _count: UserCountAggregateOutputType | null;
@@ -153,11 +154,10 @@ export type UserWhereInput = {
     lastName?: Prisma.StringFilter<"User"> | string;
     hashedPassword?: Prisma.StringFilter<"User"> | string;
     bio?: Prisma.StringNullableFilter<"User"> | string | null;
-    role?: Prisma.StringFilter<"User"> | string;
+    role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFilter<"User"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string;
-    projects?: Prisma.UserProjectsListRelationFilter;
-    createdProjects?: Prisma.ProjectListRelationFilter;
+    projects?: Prisma.UserProjectListRelationFilter;
     joinRequests?: Prisma.JoinRequestListRelationFilter;
     refreshTokens?: Prisma.RefreshTokenListRelationFilter;
 };
@@ -172,8 +172,7 @@ export type UserOrderByWithRelationInput = {
     role?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
-    projects?: Prisma.UserProjectsOrderByRelationAggregateInput;
-    createdProjects?: Prisma.ProjectOrderByRelationAggregateInput;
+    projects?: Prisma.UserProjectOrderByRelationAggregateInput;
     joinRequests?: Prisma.JoinRequestOrderByRelationAggregateInput;
     refreshTokens?: Prisma.RefreshTokenOrderByRelationAggregateInput;
 };
@@ -188,11 +187,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
     lastName?: Prisma.StringFilter<"User"> | string;
     hashedPassword?: Prisma.StringFilter<"User"> | string;
     bio?: Prisma.StringNullableFilter<"User"> | string | null;
-    role?: Prisma.StringFilter<"User"> | string;
+    role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFilter<"User"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string;
-    projects?: Prisma.UserProjectsListRelationFilter;
-    createdProjects?: Prisma.ProjectListRelationFilter;
+    projects?: Prisma.UserProjectListRelationFilter;
     joinRequests?: Prisma.JoinRequestListRelationFilter;
     refreshTokens?: Prisma.RefreshTokenListRelationFilter;
 }, "id" | "email" | "username">;
@@ -224,7 +222,7 @@ export type UserScalarWhereWithAggregatesInput = {
     lastName?: Prisma.StringWithAggregatesFilter<"User"> | string;
     hashedPassword?: Prisma.StringWithAggregatesFilter<"User"> | string;
     bio?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null;
-    role?: Prisma.StringWithAggregatesFilter<"User"> | string;
+    role?: Prisma.EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string;
     updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string;
 };
@@ -235,11 +233,10 @@ export type UserCreateInput = {
     lastName: string;
     hashedPassword: string;
     bio?: string | null;
-    role?: string;
+    role?: $Enums.UserRole;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    projects?: Prisma.UserProjectsCreateNestedManyWithoutUserInput;
-    createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatorInput;
+    projects?: Prisma.UserProjectCreateNestedManyWithoutUserInput;
     joinRequests?: Prisma.JoinRequestCreateNestedManyWithoutUserInput;
     refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput;
 };
@@ -251,11 +248,10 @@ export type UserUncheckedCreateInput = {
     lastName: string;
     hashedPassword: string;
     bio?: string | null;
-    role?: string;
+    role?: $Enums.UserRole;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    projects?: Prisma.UserProjectsUncheckedCreateNestedManyWithoutUserInput;
-    createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatorInput;
+    projects?: Prisma.UserProjectUncheckedCreateNestedManyWithoutUserInput;
     joinRequests?: Prisma.JoinRequestUncheckedCreateNestedManyWithoutUserInput;
     refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput;
 };
@@ -266,11 +262,10 @@ export type UserUpdateInput = {
     lastName?: Prisma.StringFieldUpdateOperationsInput | string;
     hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
     bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
+    role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    projects?: Prisma.UserProjectsUpdateManyWithoutUserNestedInput;
-    createdProjects?: Prisma.ProjectUpdateManyWithoutCreatorNestedInput;
+    projects?: Prisma.UserProjectUpdateManyWithoutUserNestedInput;
     joinRequests?: Prisma.JoinRequestUpdateManyWithoutUserNestedInput;
     refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput;
 };
@@ -282,11 +277,10 @@ export type UserUncheckedUpdateInput = {
     lastName?: Prisma.StringFieldUpdateOperationsInput | string;
     hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
     bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
+    role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    projects?: Prisma.UserProjectsUncheckedUpdateManyWithoutUserNestedInput;
-    createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatorNestedInput;
+    projects?: Prisma.UserProjectUncheckedUpdateManyWithoutUserNestedInput;
     joinRequests?: Prisma.JoinRequestUncheckedUpdateManyWithoutUserNestedInput;
     refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput;
 };
@@ -298,7 +292,7 @@ export type UserCreateManyInput = {
     lastName: string;
     hashedPassword: string;
     bio?: string | null;
-    role?: string;
+    role?: $Enums.UserRole;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 };
@@ -309,7 +303,7 @@ export type UserUpdateManyMutationInput = {
     lastName?: Prisma.StringFieldUpdateOperationsInput | string;
     hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
     bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
+    role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -321,7 +315,7 @@ export type UserUncheckedUpdateManyInput = {
     lastName?: Prisma.StringFieldUpdateOperationsInput | string;
     hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
     bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
+    role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -377,6 +371,9 @@ export type StringFieldUpdateOperationsInput = {
 export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null;
 };
+export type EnumUserRoleFieldUpdateOperationsInput = {
+    set?: $Enums.UserRole;
+};
 export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string;
 };
@@ -386,18 +383,6 @@ export type IntFieldUpdateOperationsInput = {
     decrement?: number;
     multiply?: number;
     divide?: number;
-};
-export type UserCreateNestedOneWithoutCreatedProjectsInput = {
-    create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedProjectsInput, Prisma.UserUncheckedCreateWithoutCreatedProjectsInput>;
-    connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedProjectsInput;
-    connect?: Prisma.UserWhereUniqueInput;
-};
-export type UserUpdateOneRequiredWithoutCreatedProjectsNestedInput = {
-    create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedProjectsInput, Prisma.UserUncheckedCreateWithoutCreatedProjectsInput>;
-    connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedProjectsInput;
-    upsert?: Prisma.UserUpsertWithoutCreatedProjectsInput;
-    connect?: Prisma.UserWhereUniqueInput;
-    update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedProjectsInput, Prisma.UserUpdateWithoutCreatedProjectsInput>, Prisma.UserUncheckedUpdateWithoutCreatedProjectsInput>;
 };
 export type UserCreateNestedOneWithoutProjectsInput = {
     create?: Prisma.XOR<Prisma.UserCreateWithoutProjectsInput, Prisma.UserUncheckedCreateWithoutProjectsInput>;
@@ -435,77 +420,6 @@ export type UserUpdateOneRequiredWithoutRefreshTokensNestedInput = {
     connect?: Prisma.UserWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRefreshTokensInput, Prisma.UserUpdateWithoutRefreshTokensInput>, Prisma.UserUncheckedUpdateWithoutRefreshTokensInput>;
 };
-export type UserCreateWithoutCreatedProjectsInput = {
-    email: string;
-    username: string;
-    firstName: string;
-    lastName: string;
-    hashedPassword: string;
-    bio?: string | null;
-    role?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    projects?: Prisma.UserProjectsCreateNestedManyWithoutUserInput;
-    joinRequests?: Prisma.JoinRequestCreateNestedManyWithoutUserInput;
-    refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput;
-};
-export type UserUncheckedCreateWithoutCreatedProjectsInput = {
-    id?: number;
-    email: string;
-    username: string;
-    firstName: string;
-    lastName: string;
-    hashedPassword: string;
-    bio?: string | null;
-    role?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    projects?: Prisma.UserProjectsUncheckedCreateNestedManyWithoutUserInput;
-    joinRequests?: Prisma.JoinRequestUncheckedCreateNestedManyWithoutUserInput;
-    refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput;
-};
-export type UserCreateOrConnectWithoutCreatedProjectsInput = {
-    where: Prisma.UserWhereUniqueInput;
-    create: Prisma.XOR<Prisma.UserCreateWithoutCreatedProjectsInput, Prisma.UserUncheckedCreateWithoutCreatedProjectsInput>;
-};
-export type UserUpsertWithoutCreatedProjectsInput = {
-    update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedProjectsInput, Prisma.UserUncheckedUpdateWithoutCreatedProjectsInput>;
-    create: Prisma.XOR<Prisma.UserCreateWithoutCreatedProjectsInput, Prisma.UserUncheckedCreateWithoutCreatedProjectsInput>;
-    where?: Prisma.UserWhereInput;
-};
-export type UserUpdateToOneWithWhereWithoutCreatedProjectsInput = {
-    where?: Prisma.UserWhereInput;
-    data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedProjectsInput, Prisma.UserUncheckedUpdateWithoutCreatedProjectsInput>;
-};
-export type UserUpdateWithoutCreatedProjectsInput = {
-    email?: Prisma.StringFieldUpdateOperationsInput | string;
-    username?: Prisma.StringFieldUpdateOperationsInput | string;
-    firstName?: Prisma.StringFieldUpdateOperationsInput | string;
-    lastName?: Prisma.StringFieldUpdateOperationsInput | string;
-    hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
-    bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    projects?: Prisma.UserProjectsUpdateManyWithoutUserNestedInput;
-    joinRequests?: Prisma.JoinRequestUpdateManyWithoutUserNestedInput;
-    refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput;
-};
-export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
-    id?: Prisma.IntFieldUpdateOperationsInput | number;
-    email?: Prisma.StringFieldUpdateOperationsInput | string;
-    username?: Prisma.StringFieldUpdateOperationsInput | string;
-    firstName?: Prisma.StringFieldUpdateOperationsInput | string;
-    lastName?: Prisma.StringFieldUpdateOperationsInput | string;
-    hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
-    bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    projects?: Prisma.UserProjectsUncheckedUpdateManyWithoutUserNestedInput;
-    joinRequests?: Prisma.JoinRequestUncheckedUpdateManyWithoutUserNestedInput;
-    refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput;
-};
 export type UserCreateWithoutProjectsInput = {
     email: string;
     username: string;
@@ -513,10 +427,9 @@ export type UserCreateWithoutProjectsInput = {
     lastName: string;
     hashedPassword: string;
     bio?: string | null;
-    role?: string;
+    role?: $Enums.UserRole;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatorInput;
     joinRequests?: Prisma.JoinRequestCreateNestedManyWithoutUserInput;
     refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput;
 };
@@ -528,10 +441,9 @@ export type UserUncheckedCreateWithoutProjectsInput = {
     lastName: string;
     hashedPassword: string;
     bio?: string | null;
-    role?: string;
+    role?: $Enums.UserRole;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatorInput;
     joinRequests?: Prisma.JoinRequestUncheckedCreateNestedManyWithoutUserInput;
     refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput;
 };
@@ -555,10 +467,9 @@ export type UserUpdateWithoutProjectsInput = {
     lastName?: Prisma.StringFieldUpdateOperationsInput | string;
     hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
     bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
+    role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    createdProjects?: Prisma.ProjectUpdateManyWithoutCreatorNestedInput;
     joinRequests?: Prisma.JoinRequestUpdateManyWithoutUserNestedInput;
     refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput;
 };
@@ -570,10 +481,9 @@ export type UserUncheckedUpdateWithoutProjectsInput = {
     lastName?: Prisma.StringFieldUpdateOperationsInput | string;
     hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
     bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
+    role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatorNestedInput;
     joinRequests?: Prisma.JoinRequestUncheckedUpdateManyWithoutUserNestedInput;
     refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput;
 };
@@ -584,11 +494,10 @@ export type UserCreateWithoutJoinRequestsInput = {
     lastName: string;
     hashedPassword: string;
     bio?: string | null;
-    role?: string;
+    role?: $Enums.UserRole;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    projects?: Prisma.UserProjectsCreateNestedManyWithoutUserInput;
-    createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatorInput;
+    projects?: Prisma.UserProjectCreateNestedManyWithoutUserInput;
     refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutJoinRequestsInput = {
@@ -599,11 +508,10 @@ export type UserUncheckedCreateWithoutJoinRequestsInput = {
     lastName: string;
     hashedPassword: string;
     bio?: string | null;
-    role?: string;
+    role?: $Enums.UserRole;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    projects?: Prisma.UserProjectsUncheckedCreateNestedManyWithoutUserInput;
-    createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatorInput;
+    projects?: Prisma.UserProjectUncheckedCreateNestedManyWithoutUserInput;
     refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutJoinRequestsInput = {
@@ -626,11 +534,10 @@ export type UserUpdateWithoutJoinRequestsInput = {
     lastName?: Prisma.StringFieldUpdateOperationsInput | string;
     hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
     bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
+    role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    projects?: Prisma.UserProjectsUpdateManyWithoutUserNestedInput;
-    createdProjects?: Prisma.ProjectUpdateManyWithoutCreatorNestedInput;
+    projects?: Prisma.UserProjectUpdateManyWithoutUserNestedInput;
     refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutJoinRequestsInput = {
@@ -641,11 +548,10 @@ export type UserUncheckedUpdateWithoutJoinRequestsInput = {
     lastName?: Prisma.StringFieldUpdateOperationsInput | string;
     hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
     bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
+    role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    projects?: Prisma.UserProjectsUncheckedUpdateManyWithoutUserNestedInput;
-    createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatorNestedInput;
+    projects?: Prisma.UserProjectUncheckedUpdateManyWithoutUserNestedInput;
     refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutRefreshTokensInput = {
@@ -655,11 +561,10 @@ export type UserCreateWithoutRefreshTokensInput = {
     lastName: string;
     hashedPassword: string;
     bio?: string | null;
-    role?: string;
+    role?: $Enums.UserRole;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    projects?: Prisma.UserProjectsCreateNestedManyWithoutUserInput;
-    createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatorInput;
+    projects?: Prisma.UserProjectCreateNestedManyWithoutUserInput;
     joinRequests?: Prisma.JoinRequestCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -670,11 +575,10 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
     lastName: string;
     hashedPassword: string;
     bio?: string | null;
-    role?: string;
+    role?: $Enums.UserRole;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    projects?: Prisma.UserProjectsUncheckedCreateNestedManyWithoutUserInput;
-    createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatorInput;
+    projects?: Prisma.UserProjectUncheckedCreateNestedManyWithoutUserInput;
     joinRequests?: Prisma.JoinRequestUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -697,11 +601,10 @@ export type UserUpdateWithoutRefreshTokensInput = {
     lastName?: Prisma.StringFieldUpdateOperationsInput | string;
     hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
     bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
+    role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    projects?: Prisma.UserProjectsUpdateManyWithoutUserNestedInput;
-    createdProjects?: Prisma.ProjectUpdateManyWithoutCreatorNestedInput;
+    projects?: Prisma.UserProjectUpdateManyWithoutUserNestedInput;
     joinRequests?: Prisma.JoinRequestUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -712,22 +615,19 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
     lastName?: Prisma.StringFieldUpdateOperationsInput | string;
     hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string;
     bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    role?: Prisma.StringFieldUpdateOperationsInput | string;
+    role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    projects?: Prisma.UserProjectsUncheckedUpdateManyWithoutUserNestedInput;
-    createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatorNestedInput;
+    projects?: Prisma.UserProjectUncheckedUpdateManyWithoutUserNestedInput;
     joinRequests?: Prisma.JoinRequestUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCountOutputType = {
     projects: number;
-    createdProjects: number;
     joinRequests: number;
     refreshTokens: number;
 };
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     projects?: boolean | UserCountOutputTypeCountProjectsArgs;
-    createdProjects?: boolean | UserCountOutputTypeCountCreatedProjectsArgs;
     joinRequests?: boolean | UserCountOutputTypeCountJoinRequestsArgs;
     refreshTokens?: boolean | UserCountOutputTypeCountRefreshTokensArgs;
 };
@@ -735,10 +635,7 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
     select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null;
 };
 export type UserCountOutputTypeCountProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    where?: Prisma.UserProjectsWhereInput;
-};
-export type UserCountOutputTypeCountCreatedProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    where?: Prisma.ProjectWhereInput;
+    where?: Prisma.UserProjectWhereInput;
 };
 export type UserCountOutputTypeCountJoinRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.JoinRequestWhereInput;
@@ -758,7 +655,6 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
     createdAt?: boolean;
     updatedAt?: boolean;
     projects?: boolean | Prisma.User$projectsArgs<ExtArgs>;
-    createdProjects?: boolean | Prisma.User$createdProjectsArgs<ExtArgs>;
     joinRequests?: boolean | Prisma.User$joinRequestsArgs<ExtArgs>;
     refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
@@ -802,7 +698,6 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "username" | "firstName" | "lastName" | "hashedPassword" | "bio" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>;
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     projects?: boolean | Prisma.User$projectsArgs<ExtArgs>;
-    createdProjects?: boolean | Prisma.User$createdProjectsArgs<ExtArgs>;
     joinRequests?: boolean | Prisma.User$joinRequestsArgs<ExtArgs>;
     refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
@@ -812,8 +707,7 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "User";
     objects: {
-        projects: Prisma.$UserProjectsPayload<ExtArgs>[];
-        createdProjects: Prisma.$ProjectPayload<ExtArgs>[];
+        projects: Prisma.$UserProjectPayload<ExtArgs>[];
         joinRequests: Prisma.$JoinRequestPayload<ExtArgs>[];
         refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[];
     };
@@ -825,7 +719,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
         lastName: string;
         hashedPassword: string;
         bio: string | null;
-        role: string;
+        role: $Enums.UserRole;
         createdAt: Date;
         updatedAt: Date;
     }, ExtArgs["result"]["user"]>;
@@ -880,8 +774,7 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    projects<T extends Prisma.User$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProjectsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
-    createdProjects<T extends Prisma.User$createdProjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdProjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    projects<T extends Prisma.User$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     joinRequests<T extends Prisma.User$joinRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$joinRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JoinRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     refreshTokens<T extends Prisma.User$refreshTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
@@ -896,7 +789,7 @@ export interface UserFieldRefs {
     readonly lastName: Prisma.FieldRef<"User", 'String'>;
     readonly hashedPassword: Prisma.FieldRef<"User", 'String'>;
     readonly bio: Prisma.FieldRef<"User", 'String'>;
-    readonly role: Prisma.FieldRef<"User", 'String'>;
+    readonly role: Prisma.FieldRef<"User", 'UserRole'>;
     readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>;
     readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>;
 }
@@ -999,26 +892,15 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
     limit?: number;
 };
 export type User$projectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    select?: Prisma.UserProjectsSelect<ExtArgs> | null;
-    omit?: Prisma.UserProjectsOmit<ExtArgs> | null;
-    include?: Prisma.UserProjectsInclude<ExtArgs> | null;
-    where?: Prisma.UserProjectsWhereInput;
-    orderBy?: Prisma.UserProjectsOrderByWithRelationInput | Prisma.UserProjectsOrderByWithRelationInput[];
-    cursor?: Prisma.UserProjectsWhereUniqueInput;
+    select?: Prisma.UserProjectSelect<ExtArgs> | null;
+    omit?: Prisma.UserProjectOmit<ExtArgs> | null;
+    include?: Prisma.UserProjectInclude<ExtArgs> | null;
+    where?: Prisma.UserProjectWhereInput;
+    orderBy?: Prisma.UserProjectOrderByWithRelationInput | Prisma.UserProjectOrderByWithRelationInput[];
+    cursor?: Prisma.UserProjectWhereUniqueInput;
     take?: number;
     skip?: number;
-    distinct?: Prisma.UserProjectsScalarFieldEnum | Prisma.UserProjectsScalarFieldEnum[];
-};
-export type User$createdProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    select?: Prisma.ProjectSelect<ExtArgs> | null;
-    omit?: Prisma.ProjectOmit<ExtArgs> | null;
-    include?: Prisma.ProjectInclude<ExtArgs> | null;
-    where?: Prisma.ProjectWhereInput;
-    orderBy?: Prisma.ProjectOrderByWithRelationInput | Prisma.ProjectOrderByWithRelationInput[];
-    cursor?: Prisma.ProjectWhereUniqueInput;
-    take?: number;
-    skip?: number;
-    distinct?: Prisma.ProjectScalarFieldEnum | Prisma.ProjectScalarFieldEnum[];
+    distinct?: Prisma.UserProjectScalarFieldEnum | Prisma.UserProjectScalarFieldEnum[];
 };
 export type User$joinRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.JoinRequestSelect<ExtArgs> | null;

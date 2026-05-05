@@ -13,7 +13,7 @@ export declare const AnyNull: import("@prisma/client-runtime-utils").AnyNullClas
 export declare const ModelName: {
     readonly User: "User";
     readonly Project: "Project";
-    readonly UserProjects: "UserProjects";
+    readonly UserProject: "UserProject";
     readonly JoinRequest: "JoinRequest";
     readonly RefreshToken: "RefreshToken";
 };
@@ -42,7 +42,6 @@ export declare const ProjectScalarFieldEnum: {
     readonly id: "id";
     readonly title: "title";
     readonly description: "description";
-    readonly creatorId: "creatorId";
     readonly tags: "tags";
     readonly likes: "likes";
     readonly public: "public";
@@ -50,12 +49,13 @@ export declare const ProjectScalarFieldEnum: {
     readonly updatedAt: "updatedAt";
 };
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum];
-export declare const UserProjectsScalarFieldEnum: {
+export declare const UserProjectScalarFieldEnum: {
     readonly userId: "userId";
     readonly projectId: "projectId";
+    readonly role: "role";
     readonly joinedAt: "joinedAt";
 };
-export type UserProjectsScalarFieldEnum = (typeof UserProjectsScalarFieldEnum)[keyof typeof UserProjectsScalarFieldEnum];
+export type UserProjectScalarFieldEnum = (typeof UserProjectScalarFieldEnum)[keyof typeof UserProjectScalarFieldEnum];
 export declare const JoinRequestScalarFieldEnum: {
     readonly id: "id";
     readonly projectId: "projectId";

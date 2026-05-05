@@ -102,6 +102,19 @@ export class AuthService {
         return { newAccessToken, newRefreshToken };
     }
 
+    async logout(refreshToken?: string): Promise<void> {
+        console.log('Logging out, received refresh token:', refreshToken);
+        if (!refreshToken) {
+            return;
+        }
+
+        await this.prisma.refreshToken.deleteMany({
+            where: {
+                token: refreshToken,
+            },
+        });
+    }
+
 
     private parseExpiresIn(expiresIn: string): { [key: string]: number } {
         // Parse the expiresIn string like "7d", "24h", "60m", etc.

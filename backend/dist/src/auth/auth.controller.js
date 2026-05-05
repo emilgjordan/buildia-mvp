@@ -27,7 +27,12 @@ let AuthController = class AuthController {
         this.usersService = usersService;
     }
     async register(createUserDto) {
-        return this.usersService.createUser(createUserDto);
+        let user = await this.usersService.createUser(createUserDto);
+        const { accessToken, refreshToken } = await this.authService.generateTokens(user);
+        return {
+            accessToken,
+            refreshToken,
+        };
     }
     async login(req) {
         if (!req.user) {
@@ -35,10 +40,15 @@ let AuthController = class AuthController {
         }
         const { accessToken, refreshToken } = await this.authService.generateTokens(req.user);
         return {
-            accessToken, refreshToken
+            accessToken,
+            refreshToken,
         };
     }
-    logout(body) { }
+    async logout(req) {
+        const refreshToken = req.headers['refresh-token'];
+        await this.authService.logout(refreshToken);
+        return { success: true };
+    }
     async refresh(req) {
         const refreshToken = req.headers['refresh-token'];
         if (!refreshToken) {
@@ -66,10 +76,10 @@ __decorate([
 ], AuthController.prototype, "login", null);
 __decorate([
     (0, common_2.Post)('logout'),
-    __param(0, (0, common_2.Body)()),
+    __param(0, (0, common_2.Req)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "logout", null);
 __decorate([
     (0, common_2.Post)('refresh'),

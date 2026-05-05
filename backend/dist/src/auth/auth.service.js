@@ -114,6 +114,17 @@ let AuthService = class AuthService {
         await this.prisma.refreshToken.delete({ where: { id: storedToken.id } });
         return { newAccessToken, newRefreshToken };
     }
+    async logout(refreshToken) {
+        console.log('Logging out, received refresh token:', refreshToken);
+        if (!refreshToken) {
+            return;
+        }
+        await this.prisma.refreshToken.deleteMany({
+            where: {
+                token: refreshToken,
+            },
+        });
+    }
     parseExpiresIn(expiresIn) {
         const match = expiresIn.match(/^(\d+)([dhm])$/);
         if (!match)

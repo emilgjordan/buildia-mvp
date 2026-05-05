@@ -47,7 +47,7 @@
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
 		<DropdownMenu.Item class="p-0">
-			<form method="post" action="/?/logout" class="w-full">
+			<form method="post" action="/logout" class="w-full">
 				<button
 					type="submit"
 					class="flex w-full cursor-default items-center px-2 py-1.5"

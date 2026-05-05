@@ -36,7 +36,7 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get project(): Prisma.ProjectDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
-    get userProjects(): Prisma.UserProjectsDelegate<ExtArgs, {
+    get userProject(): Prisma.UserProjectDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
     get joinRequest(): Prisma.JoinRequestDelegate<ExtArgs, {
