@@ -1,4 +1,5 @@
 import {
+    ForbiddenException,
     Injectable,
     NotFoundException,
     UnauthorizedException,
@@ -29,6 +30,28 @@ export class ProjectsService {
                 },
             },
         });
+    }
+
+    async getMembershipStatus(
+        projectId: number,
+        currentUserId: number,
+    ): Promise<{ role: string }> {
+        const userProject = await this.prisma.userProject.findUnique({
+            where: {
+                userId_projectId: {
+                    userId: currentUserId,
+                    projectId,
+                },
+            },
+        });
+
+        if (!userProject) {
+            throw new ForbiddenException(
+                'You are not a member of this project',
+            );
+        }
+
+        return { role: userProject.role };
     }
 
     async requestToJoinProject(

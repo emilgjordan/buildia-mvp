@@ -1,20 +1,30 @@
 import type { LayoutServerLoad } from './$types';
-import { error, redirect } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 
-export const load = (async ({ params, fetch, locals }) => {
+export const load = (async ({ params, fetch, locals, cookies }) => {
     const user = locals.user;
 
     if (!user) {
         throw redirect(302, '/login');
     }
 
+    const accessToken = cookies.get('accessToken');
+    if (!accessToken) {
+        console.log('User needs to log in');
+        throw redirect(302, '/login');
+    }
+
     try {
         const res = await fetch(`http://localhost:3000/projects/${params.projectId}/membership`, {
             method: 'GET',
+
             headers: {
+                Authorization: `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             }
         });
+
+        // console.log(res);
 
         if (res.status === 403) {
             throw error(403, 'You are not a member of this project');

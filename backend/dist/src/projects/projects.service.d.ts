@@ -5,6 +5,9 @@ export declare class ProjectsService {
     private readonly prisma;
     constructor(prisma: PrismaService);
     createProject(createProjectDto: CreateProjectDto, currentUserId: number): Promise<Project>;
+    getMembershipStatus(projectId: number, currentUserId: number): Promise<{
+        role: string;
+    }>;
     requestToJoinProject(projectId: number, currentUserId: number): Promise<JoinRequest>;
     getJoinRequests(projectId: number, currentUserId: number): Promise<JoinRequest[]>;
     acceptJoinRequest(joinRequestId: number, currentUserId: number): Promise<JoinRequest>;

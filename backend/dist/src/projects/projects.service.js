@@ -32,6 +32,20 @@ let ProjectsService = class ProjectsService {
             },
         });
     }
+    async getMembershipStatus(projectId, currentUserId) {
+        const userProject = await this.prisma.userProject.findUnique({
+            where: {
+                userId_projectId: {
+                    userId: currentUserId,
+                    projectId,
+                },
+            },
+        });
+        if (!userProject) {
+            throw new common_1.ForbiddenException('You are not a member of this project');
+        }
+        return { role: userProject.role };
+    }
     async requestToJoinProject(projectId, currentUserId) {
         const project = await this.prisma.project.findUnique({
             where: {

@@ -4,21 +4,18 @@
     import type { PageData } from './$types';
 
     let { data }: { data: PageData } = $props();
-    let project = data?.project;
-
-    console.log('Project:', project);
 </script>
 
 <div class="flex items-center justify-center">
     <div class="w-1/2 py-12">
-        <h1 class="mb-4 text-4xl font-semibold">{project.title}</h1>
-        <p class=" text-neutral-600">{project.description}</p>
+        <h1 class="mb-4 text-4xl font-semibold">{data.project.title}</h1>
+        <p class=" text-neutral-600">{data.project.description}</p>
 
         <Separator class="my-4" />
 
         <h2>Members</h2>
         <ul class="flex flex-col gap-4">
-            {#each project.members as member}
+            {#each data.project.members as member}
                 <li class="flex flex-row items-center">
                     <Avatar.Root class="mr-2 h-8 w-8">
                         <Avatar.Image src={member.user.profilePicture} alt={member.user.username} />

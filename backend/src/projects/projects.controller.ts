@@ -49,6 +49,18 @@ export class ProjectsController {
         return this.projectsService.getProjectById(+id);
     }
 
+    @Get(':id/membership')
+    @UseGuards(JwtAuthGuard)
+    async getMembershipStatus(
+        @Param('id') projectId: string,
+        @CurrentUser() currentUser: User,
+    ) {
+        return this.projectsService.getMembershipStatus(
+            +projectId,
+            currentUser.id,
+        );
+    }
+
     @Post(':id/join')
     @UseGuards(JwtAuthGuard)
     joinProject(

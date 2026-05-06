@@ -8,11 +8,11 @@ export declare class AuthService {
     private readonly prisma;
     constructor(usersService: UsersService, jwtService: JwtService, prisma: PrismaService);
     validateUser(email: string, password: string): Promise<{
-        id: number;
         email: string;
         username: string;
         firstName: string;
         lastName: string;
+        id: number;
         hashedPassword: string;
         bio: string | null;
         role: import("../../generated/prisma/enums").UserRole;

@@ -36,6 +36,9 @@ let ProjectsController = class ProjectsController {
     getProject(id) {
         return this.projectsService.getProjectById(+id);
     }
+    async getMembershipStatus(projectId, currentUser) {
+        return this.projectsService.getMembershipStatus(+projectId, currentUser.id);
+    }
     joinProject(projectId, currentUser) {
         return this.projectsService.requestToJoinProject(+projectId, currentUser.id);
     }
@@ -79,6 +82,15 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ProjectsController.prototype, "getProject", null);
+__decorate([
+    (0, common_2.Get)(':id/membership'),
+    (0, common_2.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_2.Param)('id')),
+    __param(1, (0, current_user_decorator_1.CurrentUser)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], ProjectsController.prototype, "getMembershipStatus", null);
 __decorate([
     (0, common_2.Post)(':id/join'),
     (0, common_2.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),

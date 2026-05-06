@@ -5,11 +5,11 @@ export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
     getUsers(): Promise<{
-        id: number;
         email: string;
         username: string;
         firstName: string;
         lastName: string;
+        id: number;
         hashedPassword: string;
         bio: string | null;
         role: import("../../generated/prisma/enums").UserRole;
@@ -17,11 +17,11 @@ export declare class UsersController {
         updatedAt: Date;
     }[]>;
     getCurrentUser(user: User): {
-        id: number;
         email: string;
         username: string;
         firstName: string;
         lastName: string;
+        id: number;
         hashedPassword: string;
         bio: string | null;
         role: import("../../generated/prisma/enums").UserRole;
@@ -29,11 +29,11 @@ export declare class UsersController {
         updatedAt: Date;
     };
     getUser(id: string): Promise<{
-        id: number;
         email: string;
         username: string;
         firstName: string;
         lastName: string;
+        id: number;
         hashedPassword: string;
         bio: string | null;
         role: import("../../generated/prisma/enums").UserRole;
@@ -41,11 +41,11 @@ export declare class UsersController {
         updatedAt: Date;
     } | null>;
     getUserByUsername(username: string): Promise<{
-        id: number;
         email: string;
         username: string;
         firstName: string;
         lastName: string;
+        id: number;
         hashedPassword: string;
         bio: string | null;
         role: import("../../generated/prisma/enums").UserRole;
@@ -53,11 +53,11 @@ export declare class UsersController {
         updatedAt: Date;
     } | null>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<{
-        id: number;
         email: string;
         username: string;
         firstName: string;
         lastName: string;
+        id: number;
         hashedPassword: string;
         bio: string | null;
         role: import("../../generated/prisma/enums").UserRole;
@@ -65,11 +65,11 @@ export declare class UsersController {
         updatedAt: Date;
     }>;
     remove(id: string): Promise<{
-        id: number;
         email: string;
         username: string;
         firstName: string;
         lastName: string;
+        id: number;
         hashedPassword: string;
         bio: string | null;
         role: import("../../generated/prisma/enums").UserRole;
